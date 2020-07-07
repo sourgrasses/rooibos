@@ -4,8 +4,11 @@
 import os
 import sys
 import re
+import pymysql
 from configparser import RawConfigParser
 
+
+pymysql.install_as_MySQLdb()
 
 install_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -189,6 +192,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.messages',
     'django_extensions',
+    'django_celery_results',
     'tagging',
     'rooibos.data',
     'rooibos.migration',
@@ -200,6 +204,7 @@ INSTALLED_APPS = (
     'rooibos.ui',
     'rooibos.viewers',
     'rooibos.help',
+    'rooibos.impersonate',
     'rooibos.presentation',
     'rooibos.statistics',
     'rooibos.federatedsearch',
@@ -213,11 +218,8 @@ INSTALLED_APPS = (
     'rooibos.pdfviewer',
     'rooibos.pptexport',
     'rooibos.works',
-    'pagination',
-    'impersonate',
     'compressor',
 )
-
 
 STORAGE_SYSTEMS = {
     'local': 'rooibos.storage.localfs.LocalFileSystemStorageSystem',

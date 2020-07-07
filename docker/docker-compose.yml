@@ -20,7 +20,7 @@ services:
       DB_NAME: mdid
   worker:
     build: ../.
-    image: wmit/mdid:3.2
+    image: wmit/mdid:3.5
     command: python manage.py runworkers
     healthcheck:
       disable: true
