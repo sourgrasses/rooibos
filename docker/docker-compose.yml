@@ -18,17 +18,6 @@ services:
       DB_USER: mdid
       DB_PASSWORD: supersecretpassword
       DB_NAME: mdid
-  worker:
-    build: ../.
-    image: wmit/mdid:3.5
-    command: python manage.py runworkers
-    healthcheck:
-      disable: true
-    depends_on:
-      - solr
-      - rabbitmq
-      - memcached
-      - database
   solr:
     image: solr:7.7.3-slim
   rabbitmq:
