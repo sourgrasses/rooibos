@@ -22,6 +22,8 @@ serve = cache_control(max_age=365 * 24 * 3600)(serve)
 
 
 def handler500_with_context(request):
+    print(f"request: {request}")
+    print(f"request type: {type(request)}")
     template = loader.get_template('500.html')
     return HttpResponseServerError(template.render(RequestContext(request)))
 
@@ -122,33 +124,11 @@ except ImportError:
 
 
 if getattr(settings, 'CAS_SERVER_URL', None):
-    urls += [
-        url(
-            r'^login/$',
-            'django_cas_ng.views.login',
-            {
-                'HELP': 'logging-in',
-            },
-            name='login'
-        ),
-        url(
-            r'^local-login/$',
-            login,
-            {
-                'HELP': 'logging-in',
-            },
-            name='local-login'
-        ),
-        url(
-            r'^logout/$',
-            'django_cas_ng.views.logout',
-            {
-                'HELP': 'logging-out',
-                'next_page': settings.LOGOUT_URL
-            },
-            name='logout'
-        ),
-    ]
+    import django_cas_ng.views
+    urls += [url(r'^login/$', django_cas_ng.views.LoginView, name='cas_ng_login'),
+             url(r'^logout/$', django_cas_ng.views.LogoutView, name='cas_ng_logout'),
+             url(r'^local-login/$', login, name='login'),
+             ]
 else:
     urls += [
         url(
