@@ -125,8 +125,12 @@ except ImportError:
 
 if getattr(settings, 'CAS_SERVER_URL', None):
     import django_cas_ng.views
-    urls += [url(r'^login/$', django_cas_ng.views.LoginView, name='cas_ng_login'),
-             url(r'^logout/$', django_cas_ng.views.LogoutView, name='cas_ng_logout'),
+    urls += [url(r'^login/$',
+                 django_cas_ng.views.LoginView.as_view(),
+                 name='cas_ng_login'),
+             url(r'^logout/$',
+                 django_cas_ng.views.LogoutView.as_view(),
+                 name='cas_ng_logout'),
              url(r'^local-login/$', login, name='login'),
              ]
 else:
