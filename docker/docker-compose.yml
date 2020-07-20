@@ -18,8 +18,14 @@ services:
       DB_USER: mdid
       DB_PASSWORD: supersecretpassword
       DB_NAME: mdid
+      RABBITMQ_HOST: localhost
+      SOLR_URL: localhost
+    stdin_open: true
+    tty: true
   solr:
     image: solr:7.7.3-slim
+    environment:
+      SOLR_HEAP: 2048m
   rabbitmq:
     image: rabbitmq:3.8-alpine
   memcached:

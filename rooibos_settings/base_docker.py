@@ -56,9 +56,9 @@ DATABASES = {
     }
 }
 
-
+RABBITMQ_HOST = os.getenv('RABBITMQ_HOST', 'rabbitmq')
 RABBITMQ_OPTIONS = {
-    'host': 'rabbitmq',
+    'host': RABBITMQ_HOST,
 }
 
 # Local time zone for this installation. Choices can be found here:
@@ -68,7 +68,7 @@ RABBITMQ_OPTIONS = {
 # system time zone.
 TIME_ZONE = 'America/New_York'
 
-SOLR_URL = 'http://solr:8983/solr/mdid'
+SOLR_URL = os.getenv('SOLR_URL', 'http://solr:8983/solr/mdid')
 SOLR_RECORD_INDEXER = None
 SOLR_RECORD_PRE_INDEXER = None
 
