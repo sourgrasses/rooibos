@@ -12,3 +12,4 @@ rooibos/static/cache/*
 temp/
 .env/
 travis-build/
+.mypy_cache/
